@@ -2,7 +2,6 @@
 
 A Management System to keep track of registered members and books
 
-
 ## Installation 
 
 - Download all files. 
