@@ -1,6 +1,6 @@
 # Library Management System
 
-A Management System to keep track of registered members and books
+A Management System for a library to keep track of registered members and books
 
 ## Installation 
 
