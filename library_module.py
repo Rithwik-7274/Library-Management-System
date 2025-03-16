@@ -1,10 +1,15 @@
 # library_module.py
 
+from os.path import join
+
+# Enter the absolute path of the directory in which books.txt and members.txt are located
+location = ''
+
 def load_books() :
     """To load books from books.txt"""
     books = []
     try:
-        with open('books.txt', 'r') as file:
+        with open(join(location + 'books.txt'), 'r') as file:
             for line in file:
                 book_data = line.strip().split(',')
                 books.append({
@@ -16,12 +21,11 @@ def load_books() :
                 })
         return books
     except FileNotFoundError :
-        print("Books.txt not found, try creating a new file")
         return []
 
 def save_books(books) :
     """To save books to books.txt"""
-    with open('books.txt', 'w') as file:
+    with open(join(location + 'books.txt'), 'w') as file:
         for book in books:
             file.write(f"{book['id']}, {book['title']}, {book['author']}, {book['total_copies']}, {book['available_copies']}\n")
 
@@ -29,7 +33,7 @@ def load_members() :
     """To load members from members.txt"""
     members = []
     try:
-        with open('members.txt', 'r') as file :
+        with open(join(location + 'members.txt'), 'r') as file :
             for line in file:
                 member_data = line.strip().split(',')
                 members.append({
@@ -39,12 +43,11 @@ def load_members() :
                 })
         return members
     except FileNotFoundError :
-        print("members.txt not found, try creating a new file")
         return []
 
 def save_members(members) :
     """To save members to members.txt"""
-    with open('members.txt', 'w') as file:
+    with open(join(location + 'members.txt'), 'w') as file:
         for member in members:
             issued_book_ID = ';'.join(member['issued_book_ID']) if member['issued_book_ID'] else ''
             file.write(f"{member['id']}, {member['name']}, {issued_book_ID}\n")
@@ -93,13 +96,17 @@ def issue_book(books, members, book_id, member_id) :
     book = next((b for b in books if b['id'] == book_id), None)
     member = next((m for m in members if m['id'] == member_id), None)
 
-    if not book or not member :
-        print("Book or member not found.")
+    if not book :
+        print("Book not found.")
+        return False    
+
+    if not member :
+        print("Member not found.")
         return False
 
     # To check if the member has already issued 3 books
-    if len(member['issued_book_ID']) >= 3 :
-        print("Member has already issued 3 books. Cannot issue more.")
+    if len(member['issued_book_ID']) >= 100 :
+        print("Member has already issued 100 books. Cannot issue more.")
         return False
 
     # To check if the book is available

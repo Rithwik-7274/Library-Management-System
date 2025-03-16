@@ -4,9 +4,10 @@ A Management System for a library to keep track of registered members and books
 
 ## Installation 
 
-- Download all files. 
+- Download all files if you want sample data, otherwise, you just need library_module.py and library_management_system.py. 
 
-- If you want to use Python3 IDLE to run it, keep all files in the same folder and run it.
-  If you want to use VS Code to run it, change the location to wherever your files (books.txt, members.txt) are in library_module.py with respect to the folder / file you have added to your workspace.
+- Open library_module.py and enter the absolute path of the directory in which members.txt and books.txt are located or where you want them to be saved in the location variable.
+
+- Start adding books and members. The code is well commented and can be understood / customized according to the user's needs easily.
 
 - Enjoy!!!
